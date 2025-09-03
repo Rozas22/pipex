@@ -1,25 +1,38 @@
 NAME = pipex
-
-SRCS = main.c pipex.c utils.c ft_split.c
-OBJS = $(SRCS:.c=.o)
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-$(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+INCDIR	= incude
+SRC_DIR 	= src
 
-all: $(NAME)
+LIBFT_DIR	= libft
+LIBFT_A		= $(LIBFT_DIR)/libft.a
+
+SRCS 		= $(wildcard &(SRC_DIR)/*.c)
+OBJS 		= $(SRCS:.c=.o)
+
+all: $(LIBFT_A) $(NAME)
+
+$(LIBFT_A):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
+
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(INCDIR)/pipex.h
+	$(CC) $(CFLAGS) -I $(INCDIR)-c $< -o $@
 
 clean:
 	rm -f $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
 norm:
-	norminette $(SRCS) 	pipex.h
+	norminette $(SRCS) $(INCDIR)/*.h $(LIBFT_DIR) 	pipex.h
 
 .PHONY: all clean fclean re norm

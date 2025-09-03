@@ -6,7 +6,7 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 20:23:48 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/07/22 21:40:12 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/09/03 13:40:40 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	run_pipex(char **argv, char **envp)
 	close(pipefd[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
-	return (0);
 }
 
 int	main(int argc, char **argv, char **envp)
