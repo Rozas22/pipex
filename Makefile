@@ -1,8 +1,8 @@
 NAME = pipex
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I./include -I./libft
 
-INCDIR	= incude
+INCDIR	= include
 SRC_DIR 	= src
 
 LIBFT_DIR	= libft
