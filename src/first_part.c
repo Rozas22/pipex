@@ -6,7 +6,7 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 13:55:01 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/09/09 14:02:19 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/09/30 18:32:31 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	safe_dup2(int oldfd, int newfd)
 void	fork1(pid_t *pid, t_cmddata *d)
 {
 	*pid = fork();
-	if (*pid == -1)
+	if (*pid < 0)
 		perror_exit("fork", 1);
 	if (*pid == 0)
 	{

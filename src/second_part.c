@@ -6,7 +6,7 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:02:24 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/09/09 14:04:20 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/09/30 18:48:51 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	fork2(pid_t *pid, t_cmddata *d)
 		perror_exit("fork", 1);
 	if (*pid == 0)
 	{
-		if (d->fd_in == -1)
+		if (d->fd_out == -1)
 			perror_exit("outfile", 1);
 		safe_dup2(d->fd_in, STDIN_FILENO);
 		safe_dup2(d->fd_out, STDOUT_FILENO);
