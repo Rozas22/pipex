@@ -1,36 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_part.c                                       :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 13:55:01 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/09/30 18:32:31 by ikrozas          ###   ########.fr       */
+/*   Created: 2025/10/05 20:45:35 by ikrozas           #+#    #+#             */
+/*   Updated: 2025/10/05 20:52:59 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	safe_dup2(int oldfd, int newfd)
+static void	px_free_matrix(char **m)
 {
-	if (dup2(oldfd, newfd) == -1)
-		perror_exit("dup2", 1);
+	size_t	i;
+
+	if (!m)
+		return ;
+	i = 0;
+	while (m[i])
+	{
+		free(m[i]);
+		i++;
+	}
+	free(m);
 }
 
-void	fork1(pid_t *pid, t_cmddata *d)
+static void	px_free_cmdvv(char ***v)
 {
-	*pid = fork();
-	if (*pid < 0)
-		perror_exit("fork", 1);
-	if (*pid == 0)
-	{
-		if (d->fd_in == -1)
-			perror_exit("infile", 1);
-		safe_dup2(d->fd_in, STDIN_FILENO);
-		safe_dup2(d->fd_out, STDOUT_FILENO);
-		close(d->fd_in);
-		close(d->fd_out);
-		exec_cmd(d->cmd, d->envp);
-	}
+	if (!v)
+		return ;
+	if (v[0])
+		px_free_matrix(v[0]);
+	if (v[1])
+		px_free_matrix(v[1]);
+	free(v);
+}
+
+void	ft_cleanup_args(t_cmnd_line *a)
+{
+	if (!a)
+		return ;
+	if (a->path)
+		px_free_matrix(a->path);
+	if (a->cmnds)
+		px_free_cmdvv(a->cmnds);
+	free(a);
 }
