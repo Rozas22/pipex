@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   second_part.c                                      :+:      :+:    :+:   */
+/*   path_resolve.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 14:02:24 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/09/09 14:04:20 by ikrozas          ###   ########.fr       */
+/*   Created: 2025/10/05 18:53:02 by ikrozas           #+#    #+#             */
+/*   Updated: 2025/10/05 18:53:03 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	safe_dup2(int oldfd, int newfd)
-{
-	if (dup2(oldfd, newfd) == -1)
-		perror_exit("dup2", 1);
-}
+char	*ft_pathfinder(char *aux_c, char **paths);
 
-void	fork2(pid_t *pid, t_cmddata *d)
+char	*ft_pathfinder(char *aux_c, char **paths)
 {
-	*pid = fork();
-	if (*pid == -1)
-		perror_exit("fork", 1);
-	if (*pid == 0)
+	char	*full_path;
+	int		err;
+	int		j;
+
+	err = -1;
+	j = -1;
+	if (access(aux_c, F_OK) == 0)
+		return (aux_c);
+	while (paths[++j] && err != 0)
 	{
-		if (d->fd_in == -1)
-			perror_exit("outfile", 1);
-		safe_dup2(d->fd_in, STDIN_FILENO);
-		safe_dup2(d->fd_out, STDOUT_FILENO);
-		close(d->fd_in);
-		close(d->fd_out);
-		exec_cmd(d->cmd, d->envp);
+		full_path = ft_strjoin(paths[j], aux_c);
+		err = access(full_path, F_OK);
+		if (err != 0)
+			free(full_path);
 	}
+	if (err == -1)
+		return (NULL);
+	else
+		return (full_path);
 }
