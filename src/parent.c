@@ -6,7 +6,7 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 18:31:05 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/10/05 20:48:07 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/10/07 18:24:04 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	cmd_not_found(t_cmnd_line *a, const char *name)
 	exit(127);
 }
 
-void	parent_process(int fd[2], t_cmnd_line *args, char **envp)
+void	child2_process(int fd[2], t_cmnd_line *args, char **envp)
 {
 	char	*path;
 

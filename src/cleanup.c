@@ -6,13 +6,13 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:45:35 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/10/05 20:52:59 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:42:44 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	px_free_matrix(char **m)
+static void	free_str_matr(char **m)
 {
 	size_t	i;
 
@@ -27,14 +27,14 @@ static void	px_free_matrix(char **m)
 	free(m);
 }
 
-static void	px_free_cmdvv(char ***v)
+static void	free_cmdvv(char ***v)
 {
 	if (!v)
 		return ;
 	if (v[0])
-		px_free_matrix(v[0]);
+		free_str_matr(v[0]);
 	if (v[1])
-		px_free_matrix(v[1]);
+		free_str_matr(v[1]);
 	free(v);
 }
 
@@ -43,8 +43,8 @@ void	ft_cleanup_args(t_cmnd_line *a)
 	if (!a)
 		return ;
 	if (a->path)
-		px_free_matrix(a->path);
+		free_str_matr(a->path);
 	if (a->cmnds)
-		px_free_cmdvv(a->cmnds);
+		free_cmdvv(a->cmnds);
 	free(a);
 }

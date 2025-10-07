@@ -6,7 +6,7 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 18:31:01 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/10/05 21:04:37 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/10/07 18:24:04 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	spawn_children(int fd[2], t_cmnd_line *a, char **envp, pid_t p[2])
 		return (1);
 	}
 	if (p[1] == 0)
-		parent_process(fd, a, envp);
+		child2_process(fd, a, envp);
 	return (0);
 }
 

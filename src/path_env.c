@@ -6,13 +6,13 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:55:48 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/10/05 19:55:58 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:42:57 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	free_matrix(char **m)
+static void	free_str_matr(char **m)
 {
 	size_t	i;
 
@@ -71,6 +71,6 @@ char	**ft_get_path(char **envp)
 	if (!path)
 		return (NULL);
 	if (append_slash_all(path))
-		return (free_matrix(path), NULL);
+		return (free_str_matr(path), NULL);
 	return (path);
 }

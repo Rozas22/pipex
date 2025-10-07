@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 18:30:53 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/10/05 18:52:18 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/10/07 18:08:19 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	ft_triple_free(void ***ptr);
-void	ft_double_free(void **ptr);
-void	ft_close_fds(t_cmnd_line *args);
-void	ft_write_error(int e_type);
 
 void	*ft_free_struct(t_cmnd_line *args, int e_type)
 {

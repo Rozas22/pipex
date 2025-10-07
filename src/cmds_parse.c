@@ -6,13 +6,13 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 19:55:10 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/10/05 19:55:22 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:59:51 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	free_matrix(char **m)
+static void	free_str_matr(char **m)
 {
 	size_t	i;
 
@@ -31,7 +31,7 @@ static void	free_cmdv_until(char ***cmnds, int upto)
 {
 	while (--upto >= 0)
 		if (cmnds[upto])
-			free_matrix(cmnds[upto]);
+			free_str_matr(cmnds[upto]);
 }
 
 static char	**parse_cmd_token(const char *s)

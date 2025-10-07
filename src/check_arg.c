@@ -6,13 +6,13 @@
 /*   By: ikrozas <ikrozas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 18:30:48 by ikrozas           #+#    #+#             */
-/*   Updated: 2025/10/05 19:56:34 by ikrozas          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:42:24 by ikrozas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	free_matrix(char **m)
+static void	free_str_matr(char **m)
 {
 	size_t	i;
 
@@ -57,7 +57,7 @@ t_cmnd_line	*ft_arg_check(int argc, char **argv, char **envp)
 	if (!args->cmnds)
 	{
 		if (args->path)
-			free_matrix(args->path);
+			free_str_matr(args->path);
 		free(args);
 		return (NULL);
 	}
